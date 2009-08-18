@@ -11,4 +11,6 @@ $json = json_encode($filenames);
 $jsonarr  = '(';
 $jsonarr .= $json;
 $jsonarr .= ')';
-echo $jsonarr;
+
+$response = $_GET['json_callback'] . $jsonarr;
+echo $response;
