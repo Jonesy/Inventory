@@ -2,6 +2,8 @@ if(! jQuery){
 	alert('Ackbar! jQuery not loaded!');
 } else {
 
+console.log('Dependencies loaded!');
+
 // Double check for Console debugging support.
 if (typeof console == 'undefined') 
 {
@@ -11,13 +13,41 @@ if (typeof console == 'undefined')
 	};
 }
 
+var htmlFiles = [];
+var div = '<div>Hello</div>';
+
+console.log("To start I have: " + htmlFiles.length + " HTML files.");
+
+$.getJSON('Inventory.php?json_callback=?', null, caller);
+
+function caller(data)
+{
+	for(i = 0; i < data.length; i++)
+	{
+		htmlFiles.push(data[i].filename);
+	}
+}
+
+function addListItem(item)
+{
+	$('ul#hi').append('<li><a href="' + item + '">' + item + '</a></li>');
+}
+
+function loadList(filenames)
+{
+	console.log("there is " + filenames.length);
+	for(i = 0; i < filenames.length; i++)
+	{
+		addListItem(filenames[i]);
+	}
+}
+
 // And here we go
-$(function(){
-	var htmlfiles = [1, 3];
-	console.log('Dependencies loaded!');
-	
+$(function()
+{	
 	// Write the button
 	$('body').prepend('<div id="inv_file">+</div>');
+	
 	$('#inv_file').css({
 		'padding': 10,
 		'position': 'absolute',
@@ -32,19 +62,13 @@ $(function(){
 		'text-shadow': '0px 1px 1px #fff',
 		'-webkit-border-radius': 5
 	});
-	$('#inv_file').click(function(){
+	
+	$('#inv_file').click(function()
+	{
 		// Load the JSON
-		$.getJSON('Inventory.php?json_callback=?', function(data)
-		{
-			$.each(data, function(i, item){
-				var htmlfiles = '<a href="' + item.filename + '">'
-				+ item.filename
-				+ '</a>';
-				$('body').append(htmlfiles);
-				console.log("JSON: " + htmlfiles);
-				
-			});
-		});
+		$('body').append('<ul id="hi"></ul>');
+		loadList(window.htmlFiles);
+		console.log('Click got: ' + window.htmlFiles);
 	});
 });
 
