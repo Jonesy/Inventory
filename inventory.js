@@ -1,10 +1,13 @@
-if(! jQuery){
-	alert('Ackbar! jQuery not loaded!');
-} else {
-
+//
+// Test to see if jQuery loaded.
+// TODO
+// * Remove dependency on jQuery
+// ------------------------------------------------
 console.log('Dependencies loaded!');
 
+//
 // Double check for Console debugging support.
+// ------------------------------------------------
 if (typeof console == 'undefined') 
 {
 	var console = {};
@@ -13,36 +16,43 @@ if (typeof console == 'undefined')
 	};
 }
 
+//
+// Starting Up...
+// ------------------------------------------------
 var htmlFiles = [];
-var div = '<div>Hello</div>';
 
-console.log("To start I have: " + htmlFiles.length + " HTML files.");
+$.getJSON('Inventory.php?json_callback=?', loader);
 
-$.getJSON('Inventory.php?json_callback=?', null, caller);
-
-function caller(data)
+//
+// Gathering basic functions
+// ------------------------------------------------
+// Grab the JSON
+function loader(data)
 {
 	for(i = 0; i < data.length; i++)
 	{
 		htmlFiles.push(data[i].filename);
 	}
+	$('body').append('<ul id="inv_files" style="display: none;"></ul>');
+	loadList(window.htmlFiles);
 }
 
 function addListItem(item)
 {
-	$('ul#hi').append('<li><a href="' + item + '">' + item + '</a></li>');
+	$('ul#inv_files').append('<li><a href="' + item + '">' + item + '</a></li>');
 }
 
 function loadList(filenames)
 {
-	console.log("there is " + filenames.length);
+	console.log("Found -- " + filenames.length + " -- files: \n " +filenames);
 	for(i = 0; i < filenames.length; i++)
 	{
 		addListItem(filenames[i]);
 	}
 }
 
-// And here we go
+// 
+// ------------------------------------------------
 $(function()
 {	
 	// Write the button
@@ -65,11 +75,12 @@ $(function()
 	
 	$('#inv_file').click(function()
 	{
-		// Load the JSON
-		$('body').append('<ul id="hi"></ul>');
-		loadList(window.htmlFiles);
-		console.log('Click got: ' + window.htmlFiles);
+		if($('ul#inv_files').is(':hidden'))
+		{
+			$('ul#inv_files').show();
+		} else {
+			$('ul#inv_files').hide();
+		}
+		
 	});
 });
-
-}
