@@ -10,17 +10,17 @@ function superList($dir)
 	{
 		if($file != "." && $file != ".." && $file[0] != '.')
 		{
-			if(is_dir($dir . '/' . $file))
+			if(is_dir($file))
+			{
+				$subdirfile = superList($dir . '/' . $file);
+				$filelist = array_merge($subdirfile, $filelist);
+			} else {
+				if(preg_match('/[^.](.*).html/', $file, $merb))
 				{
-					$subdirfile = superList($file);
-					$filelist = array_merge($subdirfile, $filelist);
-				} else {
-					if(preg_match("/(.*).html/", $file, $merb))
-					{
-						array_push($filelist, $dir . '/' . $merb[0]);
-					}
+					array_push($filelist, $dir . '/' . $merb[0]);
 				}
 			}
+		}
 	}
 	
 	closedir($root);
@@ -28,13 +28,8 @@ function superList($dir)
 	return $filelist;
 }
 
-foreach(superList('.') as $key => $value)
-{
-	echo $value . "<br/>";
-}
 
-/*
-$files = glob('*.html');
+$files = superList('.');
 
 for($x = 0, $numfiles = count($files); $x < $numfiles; $x++){
 	$filenames[$x] = array("filename" => $files[$x]);
@@ -48,4 +43,3 @@ $jsonarr .= ')';
 
 $response = $_GET['json_callback'] . $jsonarr;
 echo $response;
-*/
