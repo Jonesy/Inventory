@@ -15,7 +15,7 @@ function superList($dir)
 				$subdirfile = superList($dir . '/' . $file);
 				$filelist = array_merge($subdirfile, $filelist);
 			} else {
-				if(preg_match('/[^.](.*).html/', $file, $merb))
+				if(preg_match('/(.*).html/', $file, $merb))
 				{
 					array_push($filelist, $dir . '/' . $merb[0]);
 				}
@@ -23,9 +23,11 @@ function superList($dir)
 		}
 	}
 	
-	closedir($root);
+	$final = preg_replace('/\.\/(.*).html/', '/$1.html', $filelist);
 	
-	return $filelist;
+	closedir($root);
+	sort($filelist);
+	return $final;
 }
 
 

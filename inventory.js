@@ -21,7 +21,7 @@ if (typeof console == 'undefined')
 // ------------------------------------------------
 var htmlFiles = [];
 
-$.getJSON('Inventory.php?json_callback=?', loader);
+$.getJSON('/Inventory.php?json_callback=?', loader);
 
 //
 // Gathering basic functions
