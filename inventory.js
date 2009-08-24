@@ -33,7 +33,12 @@ function loader(data)
 	{
 		htmlFiles.push(data[i].filename);
 	}
-	$('body').append('<ul id="inv_files" style="display: none;"></ul>');
+	$('body').prepend('<ul id="inv_files" style="display: none;"></ul>');
+	$('ul#inv_files').css({
+		'position': 'absolute',
+		'top': 0,
+		'right': 50
+	});
 	loadList(window.htmlFiles);
 }
 
