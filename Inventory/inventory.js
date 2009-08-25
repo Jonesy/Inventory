@@ -14,7 +14,7 @@ jQuery.noConflict();
 // ------------------------------------------------
 var htmlFiles = [];
 
-jQuery.getJSON('/Inventory/Inventorya.php?json_callback=?', loader);
+jQuery.getJSON('/Inventory.php?json_callback=?', loader);
 
 //
 // Gathering basic functions
@@ -90,3 +90,5 @@ jQuery(function()
 		
 	});
 });
+
+// End of inventory.js

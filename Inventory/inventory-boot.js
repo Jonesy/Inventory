@@ -1,8 +1,12 @@
-// Inventory
+/*
+	==============================================================
+	Inventory - by Joshua R Jones
+	The General Metrics Web Development Company
+	http://general-metrics.com
+	Copyright (c) 2009 The General Metrics Web Development Company
+	==============================================================
+	*/
 // Bootstrap
-
-// ------------------------------------------------
-
 // TODO
 // * Remove dependency on jQuery
 // ------------------------------------------------
@@ -21,3 +25,4 @@ if (typeof console == 'undefined')
 		return;
 	};
 }
+// End of inventory-boot.js
