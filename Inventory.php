@@ -36,20 +36,21 @@ function listInventory($dir)
 		}
 	}
 	
-	// Close up shop, clean up and remove the '.' infront of files
+	// Close up shop
 	closedir($root);
-	$fullInventory = preg_replace('/\.\/(.*).html/', '/$1.html', $htmlfilelist);
-	sort($fullInventory);
+	sort($htmlfilelist);
 	
-	return $fullInventory;
+	return $htmlfilelist;
 }
-
+$locale =  $_SERVER['PATH_TRANSLATED'];
 // Get an array of specified files and prep the array for JSON output
-$files = listInventory('.');
+$files = listInventory('../');
 
 for($x = 0, $numfiles = count($files); $x < $numfiles; $x++)
 {
-	$filenames[$x] = array("filename" => $files[$x]);
+	// Clean up and remove the '.' infront of files
+	$cleanuri = substr($files[$x], 1);
+	$filenames[$x] = array("filename" => $cleanuri);
 }
 
 // JSON output
