@@ -1,27 +1,20 @@
-//
-// Test to see if jQuery loaded.
-// TODO
-// * Remove dependency on jQuery
-// ------------------------------------------------
+/*
+	==============================================================
+	Inventory - by Joshua R Jones
+	The General Metrics Web Development Company
+	http://general-metrics.com
+	Copyright (c) 2009 The General Metrics Web Development Company
+	==============================================================
+	*/
 console.log('Dependencies loaded!');
-
-//
-// Double check for Console debugging support.
-// ------------------------------------------------
-if (typeof console == 'undefined') 
-{
-	var console = {};
-	console.log = function(msg) {
-		return;
-	};
-}
+jQuery.noConflict();
 
 //
 // Starting Up...
 // ------------------------------------------------
 var htmlFiles = [];
 
-$.getJSON('/Inventory.php?json_callback=?', loader);
+jQuery.getJSON('/Inventory.php?json_callback=?', loader);
 
 //
 // Gathering basic functions
@@ -33,8 +26,8 @@ function loader(data)
 	{
 		htmlFiles.push(data[i].filename);
 	}
-	$('body').prepend('<ul id="inv_files" style="display: none;"></ul>');
-	$('ul#inv_files').css({
+	jQuery('body').prepend('<ul id="inv_files" style="display: none;"></ul>');
+	jQuery('ul#inv_files').css({
 		'position': 'absolute',
 		'top': 0,
 		'right': 50
@@ -44,7 +37,7 @@ function loader(data)
 
 function addListItem(item)
 {
-	$('ul#inv_files').append('<li><a href="' + item + '">' + item + '</a></li>');
+	jQuery('ul#inv_files').append('<li><a href="' + item + '">' + item + '</a></li>');
 }
 
 function loadList(filenames)
@@ -56,14 +49,13 @@ function loadList(filenames)
 	}
 }
 
-// 
-// ------------------------------------------------
-$(function()
+
+jQuery(function()
 {	
 	// Write the button
-	$('body').prepend('<div id="inv_file">+</div>');
+	jQuery('body').prepend('<div id="inv_file">+</div>');
 	
-	$('#inv_file').css({
+	jQuery('#inv_file').css({
 		'padding': 10,
 		'position': 'absolute',
 		'top': 10,
@@ -78,13 +70,13 @@ $(function()
 		'-webkit-border-radius': 5
 	});
 	
-	$('#inv_file').click(function()
+	jQuery('#inv_file').click(function()
 	{
-		if($('ul#inv_files').is(':hidden'))
+		if(jQuery('ul#inv_files').is(':hidden'))
 		{
-			$('ul#inv_files').show();
+			jQuery('ul#inv_files').fadeIn('fast');
 		} else {
-			$('ul#inv_files').hide();
+			jQuery('ul#inv_files').fadeOut('fast');
 		}
 		
 	});

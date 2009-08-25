@@ -1,1 +1,47 @@
 INVENTORY
+==================
+
+Inventory is a basic inline file browser for rapid toggling
+between HTML templates during development. The idea behind it
+is that the average front-end developer doesn't necessarily 
+hard-link all the templates together in the HTML <a> tags,
+but still needs to flip between individual HTML files to preview
+changes and ensure the front face is running smoothly. This
+app tries to enable speedy page template switching with an
+easily accessible, unobtrusive interface. It's still in early
+proof-of-concept, and will be evlolved in the next few weeks.
+
+
+INSTALLATION
+------------
+To install, just drag these files into you server root:
+
+/
+ - Inventory.php,
+ - inventory-boot.js
+ - inventory.js
+
+Near the bottom of your <HEAD> include the JS bootstrap:
+
+<script src="/inventory-boot.js" type="text/javascript"></script>
+
+I'
+* Future releases will move these files into a separate subdirectory.
+
+
+REQUIREMENTS
+------------
+Requires PHP5, but I am sure it'll work in PHP4+. Will download 
+jQuery from Google API's if it isn't installed, and runs in
+noConflict mode.
+
+
+VERSION HISTORY
+---------------
+(+) version 0.1
+    Basic proof of concept.
+    TODO:
+    * Skin it!
+    * Limit or drop jQuery dependency
+    * Move required files into a separate subdirectory
+    * Keyboard support

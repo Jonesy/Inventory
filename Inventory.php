@@ -1,47 +1,64 @@
 <?php
-
-function superList($dir)
+/*
+	==============================================================
+	Inventory - by Joshua R Jones
+	for The General Metrics Web Development Company
+	http://general-metrics.com
+	Copyright (c) 2009 The General Metrics Web Development Company
+	==============================================================
+	*/
+function listInventory($dir)
 {
+	// Open the dir and set the vars
 	$root = opendir($dir);
-	$filelist = array();
+	$htmlfilelist = array();
 	$subdirfile = array();
 
 	while($file = readdir($root))
 	{
 		if($file != "." && $file != ".." && $file[0] != '.')
 		{
+			// If file is a subdirectory, pop inside
 			if(is_dir($file))
 			{
-				$subdirfile = superList($dir . '/' . $file);
-				$filelist = array_merge($subdirfile, $filelist);
-			} else {
-				if(preg_match('/(.*).html/', $file, $merb))
+				// Loop through the subdirectory
+				$subdirfile = listInventory($dir . '/' . $file);
+				$htmlfilelist = array_merge($subdirfile, $htmlfilelist);
+			}
+			else
+			{
+				// Find and spit out only the HTML files
+				if(preg_match('/(.*).html/', $file, $htmlfile))
 				{
-					array_push($filelist, $dir . '/' . $merb[0]);
+					array_push($htmlfilelist, $dir . '/' . $htmlfile[0]);
 				}
 			}
 		}
 	}
 	
-	$final = preg_replace('/\.\/(.*).html/', '/$1.html', $filelist);
-	
+	// Close up shop, clean up and remove the '.' infront of files
 	closedir($root);
-	sort($filelist);
-	return $final;
+	$fullInventory = preg_replace('/\.\/(.*).html/', '/$1.html', $htmlfilelist);
+	sort($fullInventory);
+	
+	return $fullInventory;
 }
 
+// Get an array of specified files and prep the array for JSON output
+$files = listInventory('.');
 
-$files = superList('.');
-
-for($x = 0, $numfiles = count($files); $x < $numfiles; $x++){
+for($x = 0, $numfiles = count($files); $x < $numfiles; $x++)
+{
 	$filenames[$x] = array("filename" => $files[$x]);
 }
 
+// JSON output
 $json = json_encode($filenames);
-
 $jsonarr  = '(';
 $jsonarr .= $json;
 $jsonarr .= ')';
 
 $response = $_GET['json_callback'] . $jsonarr;
 echo $response;
+
+// End of Inventory.php
