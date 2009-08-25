@@ -14,25 +14,33 @@ jQuery.noConflict();
 // ------------------------------------------------
 var htmlFiles = [];
 
-jQuery.getJSON('/Inventory.php?json_callback=?', loader);
+jQuery.getJSON('/Inventory/Inventorya.php?json_callback=?', loader);
 
 //
 // Gathering basic functions
 // ------------------------------------------------
 // Grab the JSON
-function loader(data)
+function loader(data, status)
 {
-	for(i = 0; i < data.length; i++)
+	if(status == 'success')
 	{
-		htmlFiles.push(data[i].filename);
+		console.log('Succesfully loaded JSON!');
+		for(i = 0; i < data.length; i++)
+		{
+			htmlFiles.push(data[i].filename);
+		}
+		jQuery('body').prepend('<ul id="inv_files" style="display: none;"></ul>');
+		jQuery('ul#inv_files').css({
+			'position': 'absolute',
+			'top': 0,
+			'right': 50
+		});
+		loadList(window.htmlFiles);
 	}
-	jQuery('body').prepend('<ul id="inv_files" style="display: none;"></ul>');
-	jQuery('ul#inv_files').css({
-		'position': 'absolute',
-		'top': 0,
-		'right': 50
-	});
-	loadList(window.htmlFiles);
+	else
+	{
+		console.log('Error loading JSON');
+	}
 }
 
 function addListItem(item)
@@ -72,6 +80,7 @@ jQuery(function()
 	
 	jQuery('#inv_file').click(function()
 	{
+		console.log('click');
 		if(jQuery('ul#inv_files').is(':hidden'))
 		{
 			jQuery('ul#inv_files').fadeIn('fast');

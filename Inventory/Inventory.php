@@ -10,6 +10,7 @@
 function listInventory($dir)
 {
 	// Open the dir and set the vars
+
 	$root = opendir($dir);
 	$htmlfilelist = array();
 	$subdirfile = array();
@@ -42,9 +43,9 @@ function listInventory($dir)
 	
 	return $htmlfilelist;
 }
-$locale =  $_SERVER['PATH_TRANSLATED'];
+
 // Get an array of specified files and prep the array for JSON output
-$files = listInventory('../');
+$files = listInventory('.');
 
 for($x = 0, $numfiles = count($files); $x < $numfiles; $x++)
 {
