@@ -57,9 +57,9 @@ function loadList(filenames)
 jQuery(function()
 {	
 	// Write the button
-	jQuery('body').prepend('<div id="inv_file">+</div>');
+	jQuery('body').prepend('<div id="inv_anchor"><div id="inv_holder"><div id="inv_button">+</div></div></div>');
 	
-	jQuery('#inv_file').click(function()
+	jQuery('#inv_button').click(function()
 	{
 		console.log('click');
 		if(jQuery('#inv_files').is(':hidden'))

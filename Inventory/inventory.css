@@ -1,23 +1,46 @@
-#inv_file {
-	width: 50px;
-	height: 25px;
-	padding: 2px;
+#inv_anchor {
+	width: 70px;
+	height: 35px;
 	position: absolute;
 	bottom: 0;
 	right: 18px;
+	overflow: hidden;
+}
+
+#inv_holder {
+	width: 56px;
+	margin: 5px 0 0 3px;
+	border: 1px solid #222;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-box-shadow: 0 0 2px #000;
+}
+
+#inv_button {
+	width: 50px;
+	height: 25px;
+	padding: 2px;
 	display: block;
 	background: #000;
-	background: #000 -webkit-gradient(linear, left top, left bottom, from(#797d80), color-stop(.2, #797d80), color-stop(.5, #373d43), to(#484c52)) top left no-repeat;
-	border: 1px solid #2a2e32;
+	background: #000 -webkit-gradient(linear, left top, left bottom, from(#696969), color-stop(.45, #3b3a3a), color-stop(.5, #2f2e2e), to(#373737)) top left no-repeat;
+	border: 1px solid #868686;
 	font-family: "Courier-New";
 	font-size: 24px;
 	font-weight: bold;
 	text-align: center;
+	line-height: 22px;
 	color: #fff;
 	text-shadow: 0px -1px 1px #000;
-	-webkit-box-shadow: 0 0 5px #000;
 	-webkit-border-top-right-radius: 5px;
 	-webkit-border-top-left-radius: 5px;
+}
+
+#inv_button:hover {
+	cursor: pointer;
+}
+
+#inv_button:active {
+	background: #000 -webkit-gradient(linear, left top, left bottom, from(#171717), to(#696969)) top left no-repeat;
 }
 
 #inv_files {
@@ -25,9 +48,9 @@
 	bottom: 32px;
 	right: 15px;
 	z-index: 20;
-	font-family: Monaco, monospace;
-	background: #dfe1e3;
-	border: 1px solid #a7abaf;
+	font-family: "Lucida Grande", Arial, Verdana, sans-serif;
+	background: #fff;
+	border: 1px solid #ababab;
 	-webkit-border-radius: 10px;
 	-webkit-box-shadow: 0px 0px 15px rgba(0,0,0,.5);
 }
@@ -40,36 +63,34 @@
 #inv_files li {
 	margin: 0;
 	padding: 0;
-	font-size: 11px !important;
+	font-size: 12px !important;
+	line-height: 18px;
 	list-style-type: none;
 }
 
 #inv_files ul li a {
 	width: 200px;
-	padding: 10px 8px;
+	padding: 5px 8px;
 	float: left;
-	border-top: 1px solid #c7ccd1;
-	border-bottom: 1px solid #e9eaeb;
 	text-shadow: 0px 1px 1px #fff;
 	color: #333;
+	border-top: 1px solid #fff;
 }
 
 #inv_files ul li a:hover {
 	background: #89add2;
 	background: #89add2 -webkit-gradient(linear, left top, left bottom, from(#a7b4c1), color-stop(.3, #a7b4c1), to(#6a8095)) top left no-repeat;
-	border-bottom-color: #677482;
+	border-top-color: #677482;
 	color: #fff;
-	text-shadow: 0px 1px 1px #999;
+	text-shadow: 0px 0px 5px #042c4b;
 }
 
 #inv_files li:first-child a {
-	border-top: none;
 	-webkit-border-top-left-radius: 10px;
 	-webkit-border-top-right-radius: 10px;
 }
 
 #inv_files li:last-child a {
-	border-bottom: none;
 	-webkit-border-bottom-left-radius: 10px;
 	-webkit-border-bottom-right-radius: 10px;
 }
