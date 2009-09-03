@@ -65,8 +65,8 @@
 	font-family: "Lucida Grande", Arial, Verdana, sans-serif;
 	background: #fff;
 	border: 1px solid #ababab;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
 	-webkit-box-shadow: 0px 0px 15px rgba(0,0,0,.5);
 	-moz-box-shadow: 0px 0px 15px rgba(0,0,0,.5);
 }
@@ -102,15 +102,15 @@
 }
 
 #inv_files li:first-child a {
-	-webkit-border-top-left-radius: 10px;
-	-webkit-border-top-right-radius: 10px;
-	-moz-border-radius-topright: 10px;
-	-moz-border-radius-topleft: 10px;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-topleft: 4px;
 }
 
 #inv_files li:last-child a {
-	-webkit-border-bottom-left-radius: 10px;
-	-webkit-border-bottom-right-radius: 10px;
-	-moz-border-radius-bottomright: 10px;
-	-moz-border-radius-bottomleft: 10px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-moz-border-radius-bottomleft: 4px;
 }
