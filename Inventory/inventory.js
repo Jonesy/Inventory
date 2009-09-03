@@ -7,14 +7,30 @@
 	==============================================================
 	*/
 console.log('Dependencies loaded!');
-jQuery.noConflict();
 
 //
 // Starting Up...
 // ------------------------------------------------
 var htmlFiles = [];
 
-jQuery.getJSON('/Inventory.php?json_callback=?', loader);
+//jQuery.getJSON('/Inventory.php?json_callback=?', loader);
+
+function loadJSON(url) {
+  var headID = document.getElementsByTagName("head")[0];         
+  var newScript = document.createElement('script');
+      newScript.type = 'text/javascript';
+      newScript.src = url;
+  headID.appendChild(newScript);
+}
+
+function processJSON(feed){
+	for(i = 0; i < feed.length; i++)
+	{
+		console.log(feed[i].filename);
+	}
+}
+
+loadJSON('/Inventory.php?format=JSON&callback=loader');
 
 //
 // Gathering basic functions
@@ -22,26 +38,25 @@ jQuery.getJSON('/Inventory.php?json_callback=?', loader);
 // Grab the JSON
 function loader(data, status)
 {
-	if(status == 'success')
-	{
-		console.log('Succesfully loaded JSON!');
+	console.log('Succesfully loaded JSON!');
 		for(i = 0; i < data.length; i++)
 		{
 			htmlFiles.push(data[i].filename);
 		}
-		jQuery('body').prepend('<div id="inv_files" style="display: none;"><ul id="inv_files_holder"></ul></div>');
 		
 		loadList(window.htmlFiles);
-	}
-	else
-	{
-		console.log('Error loading JSON');
-	}
+	
+	
 }
 
 function addListItem(item)
 {
-	jQuery('ul#inv_files_holder').append('<li><a href="' + item + '">' + item + '</a></li>');
+	var list = document.getElementById('inv_files_holder');
+	var li = document.createElement("li");
+	var link = document.createElement("a");
+	link.innerText = item;
+	li.innerHTML = '<a href="' + item + '">' + item + '</a>';
+	list.appendChild(li);
 }
 
 function loadList(filenames)
@@ -53,23 +68,20 @@ function loadList(filenames)
 	}
 }
 
-
-jQuery(function()
-{	
+window.onload = function()
+{
 	// Write the button
-	jQuery('body').prepend('<div id="inv_anchor"><div id="inv_holder"><div id="inv_button">+</div></div></div>');
+	document.body.innerHTML = '<div id="inv_files" style="display: none;"><ul id="inv_files_holder"></ul></div><div id="inv_anchor"><div id="inv_holder"><div id="inv_button">+</div></div></div>';
 	
-	jQuery('#inv_button').click(function()
+	document.getElementById('inv_button').onclick = function()
 	{
-		console.log('click');
-		if(jQuery('#inv_files').is(':hidden'))
+		if(document.getElementById('inv_files').style.display == 'none')
 		{
-			jQuery('#inv_files').fadeIn('fast');
+			document.getElementById('inv_files').style.display = 'block';
 		} else {
-			jQuery('#inv_files').fadeOut('fast');
+			document.getElementById('inv_files').style.display = 'none';
 		}
-		
-	});
-});
+	};
+};
 
 // End of inventory.js

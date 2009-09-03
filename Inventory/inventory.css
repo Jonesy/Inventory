@@ -10,7 +10,7 @@
 #inv_anchor {
 	width: 70px;
 	height: 35px;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	right: 18px;
 	overflow: hidden;
@@ -58,12 +58,12 @@
 }
 
 #inv_files {
-	position: absolute;
+	position: fixed;
 	bottom: 30px;
-	right: 24px;
+	right: 26px;
 	z-index: 20;
 	font-family: "Lucida Grande", Arial, Verdana, sans-serif;
-	background: #fff;
+	background: rgba(250, 250, 250, .95);
 	border: 1px solid #ababab;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -82,6 +82,7 @@
 	font-size: 12px !important;
 	line-height: 18px;
 	list-style-type: none;
+	text-align: left;
 }
 
 #inv_files ul li a {

@@ -60,7 +60,7 @@ $jsonarr  = '(';
 $jsonarr .= $json;
 $jsonarr .= ')';
 
-$response = $_GET['json_callback'] . $jsonarr;
+$response = $_GET['callback'] . $jsonarr;
 echo $response;
 
 // End of Inventory.php
