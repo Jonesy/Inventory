@@ -9,7 +9,7 @@ but still needs to flip between individual HTML files to preview
 changes and ensure the front face is running smoothly. This
 app tries to enable speedy page template switching with an
 easily accessible, unobtrusive interface. It's still in early
-proof-of-concept, and will be evolved in the next few weeks.
+proof-of-concept, and will be continually evolved.
 
 
 INSTALLATION
@@ -25,16 +25,16 @@ Near the bottom of your <HEAD> include the JS bootstrap:
 
 <script src="/Inventory/inventory-boot.js" type="text/javascript"></script>
 
-* Future releases will have the PHP into the "Inventory" subdirectory.
+* Future releases will hopefully have the PHP into the "Inventory" subdirectory.
 
 
 REQUIREMENTS
 ------------
-Requires PHP5, but I am sure it'll work in PHP4+. Will download 
-jQuery from Google API's if it isn't installed, and runs in
-noConflict mode. I assume you work in the webroot of you computer,
-running Apache, and set up virtual hosts. At this release I have
-not checked how well this runs on a live server.
+Requires PHP4+. Will download jQuery from Google API's if it 
+isn't installed, and runs in noConflict mode. I assume you work
+in the webroot of you computer, Apache, and set up virtual hosts.
+As of this release I have not checked how well this runs on a live
+server.
 
 
 VERSION HISTORY
@@ -42,12 +42,10 @@ VERSION HISTORY
 (+) version 0.1
     Basic proof of concept.
     TODO:
-    * Skin it!
     * Limit or drop jQuery dependency
-    * Move required files into a separate subdirectory
     * Keyboard support
 
 --
 
 This is my first helper app, using very basic PHP knowledge.
-Feel free to fork and improve.
+Feel free to fork and improve or adapt to other languages.
