@@ -6,8 +6,6 @@
 	Copyright (c) 2009 The General Metrics Web Development Company
 	==============================================================
 	Bootstrap file
-	TODO
-	* Remove dependency on jQuery
 	*/
 // ------------------------------------------------
 	document.write('<link href="/Inventory/inventory.css" rel="stylesheet" media="screen" charset="utf-8"/>');

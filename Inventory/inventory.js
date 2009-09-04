@@ -13,40 +13,28 @@ console.log('Dependencies loaded!');
 // ------------------------------------------------
 var htmlFiles = [];
 
-//jQuery.getJSON('/Inventory.php?json_callback=?', loader);
-
-function loadJSON(url) {
-  var headID = document.getElementsByTagName("head")[0];         
-  var newScript = document.createElement('script');
-      newScript.type = 'text/javascript';
-      newScript.src = url;
-  headID.appendChild(newScript);
+function load_json(url) {
+  var head_tag = document.getElementsByTagName('head')[0];         
+  var json_script = document.createElement('script');
+      json_script.type = 'text/javascript';
+      json_script.src = url;
+  head_tag.appendChild(json_script);
 }
 
-function processJSON(feed){
-	for(i = 0; i < feed.length; i++)
-	{
-		console.log(feed[i].filename);
-	}
-}
-
-loadJSON('/Inventory.php?format=JSON&callback=loader');
+load_json('/Inventory.php?format=JSON&callback=filelist');
 
 //
 // Gathering basic functions
 // ------------------------------------------------
-// Grab the JSON
-function loader(data, status)
+// Parse the JSON
+function filelist(data, status)
 {
 	console.log('Succesfully loaded JSON!');
-		for(i = 0; i < data.length; i++)
-		{
-			htmlFiles.push(data[i].filename);
-		}
-		
-		loadList(window.htmlFiles);
-	
-	
+	for(i = 0; i < data.length; i++)
+	{
+		htmlFiles.push(data[i].filename);
+	}
+	loadList(window.htmlFiles);
 }
 
 function addListItem(item)
@@ -71,7 +59,39 @@ function loadList(filenames)
 window.onload = function()
 {
 	// Write the button
-	document.body.innerHTML = '<div id="inv_files" style="display: none;"><ul id="inv_files_holder"></ul></div><div id="inv_anchor"><div id="inv_holder"><div id="inv_button">+</div></div></div>';
+	//	<div id="inv_files" style="display: none;">
+	//		<ul id="inv_files_holder">
+	//		</ul>
+	//	</div>
+	//	<div id="inv_anchor">
+	//		<div id="inv_holder">
+	//			<div id="inv_button">+</div>
+	//		</div>
+	// 	</div>
+	//
+	var inBody = document.getElementsByTagName("body").item(0);
+	
+	var files_box = document.createElement('div');
+	files_box.setAttribute('id', 'inv_files');
+	files_box.setAttribute('style', 'display:none');
+	inBody.appendChild(files_box);
+	
+	var files_ul = document.createElement('ul');
+	files_ul.setAttribute('id', 'inv_files_holder');
+	files_box.appendChild(files_ul);
+	
+	var btn_anchor = document.createElement('div');
+	btn_anchor.setAttribute('id', 'inv_anchor');
+	inBody.appendChild(btn_anchor);
+	
+	var btn_holder = document.createElement('div');
+	btn_holder.setAttribute('id', 'inv_holder');
+	btn_anchor.appendChild(btn_holder);
+	
+	var btn = document.createElement('div');
+	btn.setAttribute('id', 'inv_button');
+	btn.innerHTML = '+';
+	btn_holder.appendChild(btn);
 	
 	document.getElementById('inv_button').onclick = function()
 	{

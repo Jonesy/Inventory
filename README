@@ -30,20 +30,19 @@ Near the bottom of your <HEAD> include the JS bootstrap:
 
 REQUIREMENTS
 ------------
-Requires PHP4+. Will download jQuery from Google API's if it 
-isn't installed, and runs in noConflict mode. I assume you work
-in the webroot of you computer, Apache, and set up virtual hosts.
-As of this release I have not checked how well this runs on a live
-server.
+Requires PHP4+. I assume you work the webroot of you computer, Apache, 
+and set up virtual hosts.As of this release I have not checked how well
+this runs on a live server.
 
 
-VERSION HISTORY
+RELEASE NOTES
 ---------------
-(+) version 0.1
+(+) version 0.2 - September 3rd, 2009
+    * Skinned with CSS3 and fancy Webkit styles
+    * Removed jQuery dependancy
+
+(+) version 0.1 - August 23rd, 2009
     Basic proof of concept.
-    TODO:
-    * Limit or drop jQuery dependency
-    * Keyboard support
 
 --
 
