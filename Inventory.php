@@ -1,16 +1,16 @@
 <?php
 /*
-	==============================================================
-	Inventory - by Joshua R Jones
-	for The General Metrics Web Development Company
-	http://general-metrics.com
-	Copyright (c) 2009 The General Metrics Web Development Company
-	==============================================================
-	*/
+==============================================================
+Inventory - by Joshua R Jones
+for The General Metrics Web Development Company
+http://general-metrics.com
+Copyright (c) 2009 The General Metrics Web Development Company
+==============================================================
+*/
+
 function listInventory($dir)
 {
 	// Open the dir and set the vars
-
 	$root = opendir($dir);
 	$htmlfilelist = array();
 	$subdirfile = array();
@@ -58,6 +58,7 @@ for($x = 0, $numfiles = count($files); $x < $numfiles; $x++)
 $json = json_encode($filenames);
 $jsonarr  = '(';
 $jsonarr .= $json;
+//$jsonarr .= '[]';
 $jsonarr .= ')';
 
 $response = $_GET['callback'] . $jsonarr;
