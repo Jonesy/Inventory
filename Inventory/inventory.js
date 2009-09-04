@@ -117,4 +117,30 @@ window.onload = function()
 
 };
 
+// Key-code
+function getNavKeys(e){
+	var code = e.keyCode;
+	if(document.getElementById('inv_files').style.display == 'block')
+	{
+		switch(code)
+		{
+			case 38:
+			console.log('up');
+			tester();
+		
+			break;
+		
+			case 40:
+			console.log('down');
+		}
+	}
+}
+
+function tester()
+{
+	alert('hi');
+}
+
+document.onkeyup = getNavKeys;
+
 // End of inventory.js
