@@ -101,7 +101,8 @@ master.css
 	border-top: 1px solid #fff;
 }
 
-#inv_files ul li a:hover {
+#inv_files ul li a:hover,
+#inv_files ul li.active a {
 	background: #89add2;
 	background: #89add2 -webkit-gradient(linear, left top, left bottom, from(#a7b4c1), color-stop(.3, #a7b4c1), to(#6a8095)) top left no-repeat;
 	border-top-color: #677482;

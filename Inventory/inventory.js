@@ -125,13 +125,11 @@ function getNavKeys(e){
 		switch(code)
 		{
 			case 38:
-			console.log('up');
-			tester();
-		
-			break;
+				
+				break;
 		
 			case 40:
-			console.log('down');
+				break;
 		}
 	}
 }
