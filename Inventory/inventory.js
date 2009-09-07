@@ -13,7 +13,25 @@ Copyright (c) 2009 The General Metrics Web Development Company
 console.log('Inventory loaded!');
 // Array to hold all the file values
 var htmlFiles	= [];
-var dirs	 	= [];
+
+var json = { "filelist":
+	[
+		{
+			"dir": "",
+			"files": [
+					{"filename": "index.html"},
+					{"filename": "test.html"}
+				]
+		},
+		{
+			"dir": "dir1",
+			"files": [
+					{"filename": "inside1.html"},
+					{"filename": "inside2.html"}
+				]
+		}
+	]
+};
 
 //
 // Gathering basic functions
@@ -29,7 +47,7 @@ function loadJSON(url) {
 
 function filelist(data)
 {
-	console.log('Tree: ' + data);
+	console.log(data);
 	if(data.filelist.length == 0)
 	{
 		var list_holder = document.getElementById('inv_files_holder');
@@ -41,11 +59,24 @@ function filelist(data)
 	} else {
 		for(i = 0; i < data.filelist.length; i++)
 		{
-			console.log(data.filelist[i].files);
-			for (f = 0; f < data.filelist[i].files.length; f++)
+			if(!data.filelist[i].dir)
 			{
-				//console.log('-' + data.filelist[i].files[f].filename);
-				htmlFiles.push(data.filelist[i].files[f].filename);
+				for (var f = 0; f < data.filelist[i].files.length; f++)
+				{
+					htmlFiles.push(data.filelist[i].files[f].filename);
+				}	
+			} else {
+				var test = new Array(data.filelist[i].dir);
+				var test2 = new Array();
+				test.push(test2);
+				console.log('-----------------\nFULL DIR ARRAY:');
+				for (j = 0; j < data.filelist[i].files.length; j++)
+				{
+					console.log('/' + data.filelist[i].dir + '/' + data.filelist[i].files[j].filename);
+					test2.push('/' + data.filelist[i].dir + '/' + data.filelist[i].files[j].filename);
+					//htmlFiles.push(data.filelist[i].files[f].filename);
+				}
+				htmlFiles.push(test);
 			}
 		}
 		loadList(window.htmlFiles);
@@ -55,6 +86,8 @@ function filelist(data)
 function loadList(filenames)
 {
 	//console.log("Found -- " + filenames.length + " -- files: \n " +filenames);
+	console.log('-----------------\nLIST ARRAY:');
+	console.log(filenames);
 	for(i = 0; i < filenames.length; i++)
 	{
 		addListItem(filenames[i]);
@@ -65,14 +98,19 @@ function addListItem(item)
 {
 	var list = document.getElementById('inv_files_holder');
 	var li = document.createElement('li');
-	if(!item == '')
+	var link = document.createElement('a');
+	if(!isArray(item))
 	{
-		var link = document.createElement('a');
-			link.innerText = item;
-			li.innerHTML = '<a href="' + item + '">' + item + '</a>';
-		list.appendChild(li);
+		li.innerHTML = '<a href="/' + item + '">' + item + '</a>';
+		
+	} else {
+		li.innerHTML = '<a href="/' + item[0] + '" onclick="return false;">' + item[0] + '</a>';
 	}
-	
+	list.appendChild(li);
+}
+
+function isArray(obj) {
+    return obj.constructor == Array;
 }
 
 
@@ -125,7 +163,7 @@ window.onload = function()
 	};
 	
 	//loadJSON('/Inventory.php?format=JSON&callback=filelist');
-	loadJSON('/Inventory/fixtures.php?format=JSON&callback=filelist');
+	filelist(json);
 };
 
 // Key-code
@@ -142,11 +180,6 @@ function getNavKeys(e){
 				break;
 		}
 	}
-}
-
-function tester()
-{
-	console.log('hi');
 }
 
 document.onkeyup = getNavKeys;

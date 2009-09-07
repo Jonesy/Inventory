@@ -101,7 +101,8 @@ master.css
 	width: 200px;
 	padding: 5px 8px;
 	float: left;
-	
+	overflow: hidden;
+	text-overflow: ellipsis;
 	color: #fff;
 }
 
