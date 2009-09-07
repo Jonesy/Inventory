@@ -29,7 +29,8 @@ function loadJSON(url) {
 
 function filelist(data)
 {
-	if(data.length <= 0)
+	console.log('Tree: ' + data);
+	if(data.filelist.length == 0)
 	{
 		var list_holder = document.getElementById('inv_files_holder');
 		var nofiles = document.createElement('li');
@@ -38,36 +39,40 @@ function filelist(data)
 		list_holder.appendChild(nofiles);
 		console.log('-- But no JSON items found!')
 	} else {
-		for(i = 0; i < data.length; i++)
+		for(i = 0; i < data.filelist.length; i++)
 		{
-			htmlFiles.push(data[i].filename);
-			if(data[i].test <= 1)
+			console.log(data.filelist[i].files);
+			for (f = 0; f < data.filelist[i].files.length; f++)
 			{
-				console.log('hi');
+				//console.log('-' + data.filelist[i].files[f].filename);
+				htmlFiles.push(data.filelist[i].files[f].filename);
 			}
 		}
 		loadList(window.htmlFiles);
-		console.log('Succesfully loaded JSON!');
+	}
+}
+
+function loadList(filenames)
+{
+	//console.log("Found -- " + filenames.length + " -- files: \n " +filenames);
+	for(i = 0; i < filenames.length; i++)
+	{
+		addListItem(filenames[i]);
 	}
 }
 
 function addListItem(item)
 {
 	var list = document.getElementById('inv_files_holder');
-	var li = document.createElement("li");
-	var link = document.createElement("a");
-		link.innerText = item;
-		li.innerHTML = '<a href="' + item + '">' + item + '</a>';
-	list.appendChild(li);
-}
-
-function loadList(filenames)
-{
-	console.log("Found -- " + filenames.length + " -- files: \n " +filenames);
-	for(i = 0; i < filenames.length; i++)
+	var li = document.createElement('li');
+	if(!item == '')
 	{
-		addListItem(filenames[i]);
+		var link = document.createElement('a');
+			link.innerText = item;
+			li.innerHTML = '<a href="' + item + '">' + item + '</a>';
+		list.appendChild(li);
 	}
+	
 }
 
 
