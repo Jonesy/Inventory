@@ -67,9 +67,9 @@ master.css
 	background: rgba(0, 0, 0, .8);
 	border: 2px solid #fff;
 	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.7);
-	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,.7);
+	-moz-border-radius: 6px;
+	-webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.7);
+	-moz-box-shadow: 0px 0px 5px rgba(0,0,0,.7);
 }
 
 #inv_files ul {

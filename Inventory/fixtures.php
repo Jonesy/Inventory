@@ -1,4 +1,4 @@
 <?php
 
-$response = $_GET['callback'] . '([{"filename":"\/index.html", "test": 0}])';
+$response = $_GET['callback'] . '([{"filename":"\/index.html"}])';
 echo $response;
