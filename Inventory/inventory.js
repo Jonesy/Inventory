@@ -12,7 +12,8 @@ Copyright (c) 2009 The General Metrics Web Development Company
 // ------------------------------------------------
 console.log('Inventory loaded!');
 // Array to hold all the file values
-var htmlFiles = [];
+var htmlFiles	= [];
+var dirs	 	= [];
 
 //
 // Gathering basic functions
@@ -40,6 +41,10 @@ function filelist(data)
 		for(i = 0; i < data.length; i++)
 		{
 			htmlFiles.push(data[i].filename);
+			if(data[i].test <= 1)
+			{
+				console.log('hi');
+			}
 		}
 		loadList(window.htmlFiles);
 		console.log('Succesfully loaded JSON!');
@@ -64,6 +69,7 @@ function loadList(filenames)
 		addListItem(filenames[i]);
 	}
 }
+
 
 // Build the elements when the window loads. Yes, I am stuck on jQuery-mode.
 window.onload = function()
@@ -113,8 +119,8 @@ window.onload = function()
 		}
 	};
 	
-	loadJSON('/Inventory.php?format=JSON&callback=filelist');
-
+	//loadJSON('/Inventory.php?format=JSON&callback=filelist');
+	loadJSON('/Inventory/fixtures.php?format=JSON&callback=filelist');
 };
 
 // Key-code
@@ -125,7 +131,6 @@ function getNavKeys(e){
 		switch(code)
 		{
 			case 38:
-				
 				break;
 		
 			case 40:
@@ -136,7 +141,7 @@ function getNavKeys(e){
 
 function tester()
 {
-	alert('hi');
+	console.log('hi');
 }
 
 document.onkeyup = getNavKeys;
