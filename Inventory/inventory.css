@@ -113,6 +113,17 @@ master.css
 	color: #fff;
 }
 
+#inv_files ul li ul {
+	position: absolute;
+	bottom: 0;
+	left: -220px;
+	display: none;
+}
+
+#inv_files ul li:hover ul {
+	display: block;
+}
+
 #inv_files li:first-child a {
 	-webkit-border-top-left-radius: 2px;
 	-webkit-border-top-right-radius: 2px;

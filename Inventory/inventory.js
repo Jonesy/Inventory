@@ -105,10 +105,20 @@ function addListItem(item)
 		
 	} else {
 		li.innerHTML = '<a href="/' + item[0] + '" onclick="return false;">' + item[0] + '</a>';
+		var sublist = document.createElement('ul');
+			sublist.setAttribute('id', item[0]);
+		li.appendChild(sublist);
+		for(k = 0; k < item[1].length; k++)
+		{
+			var subdirLink = document.createElement('li');
+				subdirLink.innerHTML = '<a href="/' + item[1][k] + '">' + item[1][k] + '</a>';
+			sublist.appendChild(subdirLink);
+		}
 	}
 	list.appendChild(li);
 }
 
+// If only this was default in JS...
 function isArray(obj) {
     return obj.constructor == Array;
 }
