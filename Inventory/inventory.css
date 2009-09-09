@@ -34,7 +34,7 @@ master.css
 	height: 25px;
 	padding: 2px;
 	display: block;
-	background: #696969;
+	background: rgba(0, 0, 0, .8);
 	background: #696969 -webkit-gradient(linear, left top, left bottom, from(#696969), color-stop(.45, #3b3a3a), color-stop(.5, #2f2e2e), to(#373737)) top left no-repeat;
 	border: 1px solid #868686;
 	font-family: "Courier-New";
@@ -73,6 +73,7 @@ master.css
 }
 
 #inv_files ul {
+	width: 216px;
 	margin: 0;
 	padding: 0;
 	float: left;
@@ -82,8 +83,11 @@ master.css
 }
 
 #inv_files li {
+	width: 200px;
 	margin: 0;
 	padding: 0;
+	position: relative;
+	float: left;
 	font-size: 12px !important;
 	line-height: 18px;
 	list-style-type: none;
@@ -113,14 +117,22 @@ master.css
 	color: #fff;
 }
 
-#inv_files ul li ul {
+#inv_files ul li .sub {
 	position: absolute;
 	bottom: 0;
 	left: -220px;
 	display: none;
+	background: rgba(0,0,0,.8);
+	font-family: "Lucida Grande", Arial, Verdana, sans-serif;
+	background: rgba(0, 0, 0, .8);
+	border: 2px solid rgba(250,250,250,.8);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 6px;
+	-webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.7);
+	-moz-box-shadow: 0px 0px 5px rgba(0,0,0,.7);
 }
 
-#inv_files ul li:hover ul {
+#inv_files ul li:hover .sub {
 	display: block;
 }
 
@@ -131,9 +143,15 @@ master.css
 	-moz-border-radius-topleft: 2px;
 }
 
-#inv_files li:last-child a {
+#inv_files ul li:last-child a {
 	-webkit-border-bottom-left-radius: 2px;
 	-webkit-border-bottom-right-radius: 2px;
 	-moz-border-radius-bottomright: 2px;
 	-moz-border-radius-bottomleft: 2px;
+}
+
+.arrow {
+	position: absolute;
+	top: 10px;
+	right: -10px;
 }

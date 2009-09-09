@@ -13,7 +13,7 @@ function listInventory($dir)
 	// Open the dir and set the vars
 	$root = opendir($dir);
 	$htmlfilelist = array();
-	$subdirfile = array();
+	$directory = array();
 
 	while($file = readdir($root))
 	{
@@ -24,14 +24,16 @@ function listInventory($dir)
 			{
 				// Loop through the subdirectory
 				$subdirfile = listInventory($dir . '/' . $file);
-				$htmlfilelist = array_merge($subdirfile, $htmlfilelist);
+				$test = array('dir' => $file);
+				array_push($htmlfilelist, $test);
+				//$htmlfilelist = array_merge($subdirfile, $htmlfilelist);
 			}
 			else
 			{
 				// Find and spit out only the HTML files
 				if(preg_match('/(.*).html/', $file, $htmlfile))
 				{
-					array_push($htmlfilelist, $dir . '/' . $htmlfile[0]);
+					array_push($htmlfilelist, $htmlfile[0]);
 				}
 			}
 		}
@@ -47,19 +49,29 @@ function listInventory($dir)
 // Get an array of specified files and prep the array for JSON output
 $files = listInventory('.');
 
-for($x = 0, $numfiles = count($files); $x < $numfiles; $x++)
-{
-	// Clean up and remove the '.' infront of files
-	$cleanuri = substr($files[$x], 1);
-	$filenames[$x] = array("filename" => $cleanuri);
-}
+
+$fixture = array(
+	 		array(
+				"dir" => "",
+				"files" => array(
+						"index.html",
+						"test.html"
+				)
+			),
+			array(
+				"dir" => "test",
+				"files" => array(
+						"index.html",
+						"test.html"
+				)
+			)
+	);
 
 // JSON output
-$json = json_encode($filenames);
-$jsonarr  = '(';
+$json = json_encode($files);
+$jsonarr  = '({"filelist": ';
 $jsonarr .= $json;
-//$jsonarr .= '[]';
-$jsonarr .= ')';
+$jsonarr .= '})';
 
 $response = $_GET['callback'] . $jsonarr;
 echo $response;

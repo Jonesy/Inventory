@@ -14,20 +14,32 @@ console.log('Inventory loaded!');
 // Array to hold all the file values
 var htmlFiles	= [];
 
+// Test Array
 var json = { "filelist":
 	[
 		{
 			"dir": "",
 			"files": [
-					{"filename": "index.html"},
-					{"filename": "test.html"}
+					"index.html",
+					"test.html"
 				]
 		},
 		{
 			"dir": "dir1",
 			"files": [
-					{"filename": "inside1.html"},
-					{"filename": "inside2.html"}
+					"inside1.html",
+					"inside2.html"
+				]
+		},
+		{
+			"dir": "dir4",
+			"files": [
+					"inside1.html",
+					"inside1.html",
+					"inside1.html",
+					"inside1.html",
+					"inside1.html",
+					"inside2.html"
 				]
 		}
 	]
@@ -54,8 +66,10 @@ function filelist(data)
 		var nofiles = document.createElement('li');
 			nofiles.className = 'nofiles';
 			nofiles.innerText = 'Weird! No files found!';
+		
 		list_holder.appendChild(nofiles);
-		console.log('-- But no JSON items found!')
+		console.log('-- But no JSON items found!');
+		
 	} else {
 		for(i = 0; i < data.filelist.length; i++)
 		{
@@ -63,20 +77,20 @@ function filelist(data)
 			{
 				for (var f = 0; f < data.filelist[i].files.length; f++)
 				{
-					htmlFiles.push(data.filelist[i].files[f].filename);
+					htmlFiles.push(data.filelist[i].files[f]);
 				}	
 			} else {
-				var test = new Array(data.filelist[i].dir);
-				var test2 = new Array();
-				test.push(test2);
+				var dir_root = new Array(data.filelist[i].dir);
+				var dir_files = new Array();
+				dir_root.push(dir_files);
+				
 				console.log('-----------------\nFULL DIR ARRAY:');
 				for (j = 0; j < data.filelist[i].files.length; j++)
 				{
-					console.log('/' + data.filelist[i].dir + '/' + data.filelist[i].files[j].filename);
-					test2.push('/' + data.filelist[i].dir + '/' + data.filelist[i].files[j].filename);
-					//htmlFiles.push(data.filelist[i].files[f].filename);
+					console.log('/' + data.filelist[i].dir + '/' + data.filelist[i].files[j]);
+					dir_files.push(data.filelist[i].files[j]);
 				}
-				htmlFiles.push(test);
+				htmlFiles.push(dir_root);
 			}
 		}
 		loadList(window.htmlFiles);
@@ -101,21 +115,49 @@ function addListItem(item)
 	var link = document.createElement('a');
 	if(!isArray(item))
 	{
+		li.setAttribute('id', item);
 		li.innerHTML = '<a href="/' + item + '">' + item + '</a>';
-		
+		list.appendChild(li);
 	} else {
-		li.innerHTML = '<a href="/' + item[0] + '" onclick="return false;">' + item[0] + '</a>';
+		li.innerHTML = '<a href="/' + item[0] + '" onclick="return false;">' + item[0] + '<canvas id="' + item[0] + '_arrow" height="15" width="15" class="arrow"/></a>';
+		
+		var sublist_container = document.createElement('div');
+			sublist_container.setAttribute('class', 'sub');
 		var sublist = document.createElement('ul');
 			sublist.setAttribute('id', item[0]);
-		li.appendChild(sublist);
+		
+		sublist_container.appendChild(sublist);
+		
+		li.appendChild(sublist_container);
+		list.appendChild(li);
+		
+		drawTriangle(item[0] + '_arrow');
+		
 		for(k = 0; k < item[1].length; k++)
 		{
+			console.log(item[1][k]);
 			var subdirLink = document.createElement('li');
-				subdirLink.innerHTML = '<a href="/' + item[1][k] + '">' + item[1][k] + '</a>';
+				subdirLink.innerHTML = '<a href="/'+ item[0] + '/' + item[1][k] + '">' + item[1][k] + '</a>';
 			sublist.appendChild(subdirLink);
 		}
 	}
-	list.appendChild(li);
+	
+	
+}
+
+// Uses Canvas to draw directory triangles
+function drawTriangle(cid){
+	var myCanvas = document.getElementById(cid);
+	console.log('Canvas: ' + myCanvas);
+	var context = myCanvas.getContext("2d");
+    
+	context.beginPath();
+	context.moveTo(0, 0);
+	context.lineTo(0, 10);
+	context.lineTo(10, 5);
+	context.closePath();
+	context.fillStyle = "#999";
+	context.fill();
 }
 
 // If only this was default in JS...
@@ -172,8 +214,8 @@ window.onload = function()
 		}
 	};
 	
-	//loadJSON('/Inventory.php?format=JSON&callback=filelist');
-	filelist(json);
+	loadJSON('/Inventory.php?format=JSON&callback=filelist');
+	//filelist(json);
 };
 
 // Key-code
