@@ -10,40 +10,26 @@ Copyright (c) 2009 The General Metrics Web Development Company
 
 function listInventory($dir)
 {
-	// Open the dir and set the vars
-	$root = opendir($dir);
-	$htmlfilelist = array();
-	$directory = array();
-
-	while($file = readdir($root))
+	$file = scandir($dir);
+	
+	foreach($file as $f)
 	{
-		if($file != "." && $file != ".." && $file[0] != '.')
-		{
-			// If file is a subdirectory, pop inside
-			if(is_dir($file))
+		if($f != '.' && $f != '..' && strrpos($f, '.') != '.')
 			{
-				// Loop through the subdirectory
-				$subdirfile = listInventory($dir . '/' . $file);
-				$test = array('dir' => $file);
-				array_push($htmlfilelist, $test);
-				//$htmlfilelist = array_merge($subdirfile, $htmlfilelist);
-			}
-			else
-			{
-				// Find and spit out only the HTML files
-				if(preg_match('/(.*).html/', $file, $htmlfile))
+				if(is_dir($f))
 				{
-					array_push($htmlfilelist, $htmlfile[0]);
+					echo 'dir:'.$f . '<br>';
+					listInventory($dir . '/' . $f);
 				}
-			}
+				else
+				{
+					if(preg_match('/(.*).html/', $f))
+					{
+						echo "&nbsp;files:" . $f . "<br>";
+					}
+				}
 		}
 	}
-	
-	// Close up shop
-	closedir($root);
-	sort($htmlfilelist);
-	
-	return $htmlfilelist;
 }
 
 // Get an array of specified files and prep the array for JSON output
@@ -68,12 +54,12 @@ $fixture = array(
 	);
 
 // JSON output
-$json = json_encode($files);
-$jsonarr  = '({"filelist": ';
-$jsonarr .= $json;
-$jsonarr .= '})';
-
-$response = $_GET['callback'] . $jsonarr;
-echo $response;
+//$json = json_encode($files);
+//$jsonarr  = '({"filelist": ';
+//$jsonarr .= $json;
+//$jsonarr .= '})';
+//
+//$response = $_GET['callback'] . $jsonarr;
+//echo $response;
 
 // End of Inventory.php

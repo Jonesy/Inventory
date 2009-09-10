@@ -35,7 +35,7 @@ master.css
 	padding: 2px;
 	display: block;
 	background: rgba(0, 0, 0, .8);
-	background: #696969 -webkit-gradient(linear, left top, left bottom, from(#696969), color-stop(.45, #3b3a3a), color-stop(.5, #2f2e2e), to(#373737)) top left no-repeat;
+	background: #696969 -webkit-gradient(linear, left top, left bottom, from(#696969), color-stop(.45, #3b3a3a), color-stop(.5, #2f2e2e), color-stop(.8, #373737), to(#666)) top left no-repeat;
 	border: 1px solid #868686;
 	font-family: "Courier-New";
 	font-size: 24px;
