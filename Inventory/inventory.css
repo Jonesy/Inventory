@@ -88,7 +88,7 @@ master.css
 	padding: 0;
 	position: relative;
 	float: left;
-	font-size: 12px !important;
+	font-size: 13px !important;
 	line-height: 18px;
 	list-style-type: none;
 	text-align: left;
@@ -107,6 +107,7 @@ master.css
 	float: left;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	text-decoration: none;
 	color: #fff;
 }
 

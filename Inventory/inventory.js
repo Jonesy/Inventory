@@ -214,8 +214,8 @@ window.onload = function()
 		}
 	};
 	
-	loadJSON('/Inventory.php?format=JSON&callback=filelist');
-	//filelist(json);
+	//loadJSON('/Inventory.php?format=JSON&callback=filelist');
+	filelist(json);
 };
 
 // Key-code
