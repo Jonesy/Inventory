@@ -59,7 +59,8 @@ function loadJSON(url) {
 
 function filelist(data)
 {
-	console.log(data);
+	console.log(data.filelist[3]);
+	
 	if(data.filelist.length == 0)
 	{
 		var list_holder = document.getElementById('inv_files_holder');
@@ -69,15 +70,14 @@ function filelist(data)
 		
 		list_holder.appendChild(nofiles);
 		console.log('-- But no JSON items found!');
-		
 	} else {
 		for(i = 0; i < data.filelist.length; i++)
 		{
-			if(!data.filelist[i].dir)
+			if(isArray(data.filelist[i]))
 			{
-				for (var f = 0; f < data.filelist[i].files.length; f++)
+				for (var f = 0; f < data.filelist[i].length; f++)
 				{
-					htmlFiles.push(data.filelist[i].files[f]);
+					htmlFiles.push(data.filelist[i]);
 				}	
 			} else {
 				var dir_root = new Array(data.filelist[i].dir);
@@ -93,7 +93,9 @@ function filelist(data)
 				htmlFiles.push(dir_root);
 			}
 		}
+		
 		loadList(window.htmlFiles);
+		
 	}
 }
 
@@ -102,6 +104,7 @@ function loadList(filenames)
 	//console.log("Found -- " + filenames.length + " -- files: \n " +filenames);
 	console.log('-----------------\nLIST ARRAY:');
 	console.log(filenames);
+	
 	for(i = 0; i < filenames.length; i++)
 	{
 		addListItem(filenames[i]);
@@ -214,8 +217,8 @@ window.onload = function()
 		}
 	};
 	
-	//loadJSON('/Inventory.php?format=JSON&callback=filelist');
-	filelist(json);
+	loadJSON('/Inventory.php?format=JSON&callback=filelist');
+	//filelist(json);
 };
 
 // Key-code
