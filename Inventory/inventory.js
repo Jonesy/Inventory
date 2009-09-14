@@ -76,14 +76,13 @@ function filelist(data)
 		
 		for(i = 0; i < data.filelist.length; i++)
 		{
-
-			if(data.filelist[i])
+			console.log('dir: ' + data.filelist[i].dir);
+			if(data.filelist[i].filename)
 			{
-				for (var f = 0; f < data.filelist[i].length; f++)
-				{
-					htmlFiles.push(data.filelist[f].filename);
-				}	
-			} else {
+				htmlFiles.push(data.filelist[i].filename);	
+			}
+			else
+			{
 				var dir_root = new Array(data.filelist[i].dir);
 				var dir_files = new Array();
 				dir_root.push(dir_files);
