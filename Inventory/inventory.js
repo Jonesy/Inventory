@@ -141,7 +141,10 @@ function addListItem(item)
 		li.appendChild(sublist_container);
 		list.appendChild(li);
 		
+		if(!document.all)
+		{
 		drawTriangle(item[0] + '_arrow');
+		}
 		
 		for(k = 0; k < item[1].length; k++)
 		{
@@ -151,7 +154,6 @@ function addListItem(item)
 			sublist.appendChild(subdirLink);
 		}
 	}
-	
 	
 }
 
@@ -226,23 +228,5 @@ window.onload = function()
 	loadJSON('/Inventory.php?format=JSON&callback=filelist');
 	//filelist(json);
 };
-
-// Key-code
-function getNavKeys(e){
-	var code = e.keyCode;
-	if(document.getElementById('inv_files').style.display == 'block')
-	{
-		switch(code)
-		{
-			case 38:
-				break;
-		
-			case 40:
-				break;
-		}
-	}
-}
-
-document.onkeyup = getNavKeys;
 
 // End of inventory.js
