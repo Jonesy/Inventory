@@ -76,7 +76,6 @@ function filelist(data)
 		
 		for(i = 0; i < data.filelist.length; i++)
 		{
-			console.log('dir: ' + data.filelist[i].dir);
 			if(data.filelist[i].filename)
 			{
 				htmlFiles.push(data.filelist[i].filename);	
@@ -87,7 +86,12 @@ function filelist(data)
 				var dir_files = new Array();
 				dir_root.push(dir_files);
 				
-				console.log('-----------------\nFULL DIR ARRAY:');
+				console.log('-----------------\nFULL DIR ARRAY:' + data.filelist[i].dir);
+				
+				if(data.filelist[i].files.length == 0)
+				{
+					continue;
+				}
 				for (j = 0; j < data.filelist[i].files.length; j++)
 				{
 					console.log('/' + data.filelist[i].dir + '/' + data.filelist[i].files[j].filename);
@@ -106,7 +110,7 @@ function loadList(filenames)
 {
 	//console.log("Found -- " + filenames.length + " -- files: \n " +filenames);
 	console.log('-----------------\nLIST ARRAY:');
-	console.log(filenames);
+	console.log(filenames[0]);
 	
 	for(i = 0; i < filenames.length; i++)
 	{

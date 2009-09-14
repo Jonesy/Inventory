@@ -62,7 +62,7 @@ master.css
 	position: fixed;
 	bottom: 30px;
 	right: 26px;
-	z-index: 20;
+	z-index: 1000;
 	font-family: "Lucida Grande", Arial, Verdana, sans-serif;
 	background: #000;
 	background: rgba(0, 0, 0, .8);

@@ -24,13 +24,12 @@ function inventory_list($source_dir)
 				if(is_dir($file))
 				{
 					// Loop through the subdirectory
-					$test = array();
-					$test["dir"] = $file;
+					$filestore = array();
+					$filestore["dir"] = $file;
 					$store = array();
 					$store["files"] = inventory_list($source_dir . '/' . $file);
-					//$output[$file] = $store;
-					$test = array_merge($test, $store);
-					$output[] = $test;
+					$filestore = array_merge($filestore, $store);
+					$output[] = $filestore;
 				}
 				else
 				{
