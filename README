@@ -14,12 +14,13 @@ proof-of-concept, and will be continually evolved.
 
 INSTALLATION
 ------------
-To install, just drag these files into you server root:
+To install, place these files into you working directory root:
 
 /
  - Inventory.php,
  - /Inventory/inventory-boot.js
  - /Inventory/inventory.js
+ - /Inventory/inventory.css
 
 Near the bottom of your <HEAD> include the JS bootstrap:
 
@@ -31,12 +32,19 @@ Near the bottom of your <HEAD> include the JS bootstrap:
 REQUIREMENTS
 ------------
 Requires PHP4+. I assume you work the webroot of you computer, Apache, 
-and set up virtual hosts.As of this release I have not checked how well
+and set up virtual hosts. As of this release I have not checked how well
 this runs on a live server.
+
+Runs well in Safari 3+ / Firefox 2+ / Opera 10+
+Best results in Safari 4.
 
 
 RELEASE NOTES
 ---------------
+(+) version 0.3 - September 14th, 2009
+    * Added nested folders support (1 directory deep only, so far)
+    * Styled the interface with heavy CSS3 attributes
+
 (+) version 0.2 - September 3rd, 2009
     * Skinned with CSS3 and fancy Webkit styles
     * Removed jQuery dependancy

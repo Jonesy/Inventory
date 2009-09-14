@@ -34,7 +34,7 @@ master.css
 	height: 25px;
 	padding: 2px;
 	display: block;
-	background: rgba(0, 0, 0, .8);
+	background: #000;
 	background: #696969 -webkit-gradient(linear, left top, left bottom, from(#696969), color-stop(.45, #3b3a3a), color-stop(.5, #2f2e2e), color-stop(.8, #373737), to(#666)) top left no-repeat;
 	border: 1px solid #868686;
 	font-family: "Courier-New";
@@ -64,6 +64,7 @@ master.css
 	right: 26px;
 	z-index: 20;
 	font-family: "Lucida Grande", Arial, Verdana, sans-serif;
+	background: #000;
 	background: rgba(0, 0, 0, .8);
 	border: 2px solid #fff;
 	-webkit-border-radius: 4px;
@@ -123,6 +124,7 @@ master.css
 	bottom: 0;
 	left: -220px;
 	display: none;
+	background: #000;
 	background: rgba(0,0,0,.8);
 	font-family: "Lucida Grande", Arial, Verdana, sans-serif;
 	background: rgba(0, 0, 0, .8);
