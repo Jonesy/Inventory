@@ -14,9 +14,10 @@ function inventory_list($source_dir)
 		$root = opendir($source_dir);
 		
 		$output = array();
-	
+		
 		while($file = readdir($root))
 		{
+			
 			if($file != ".." && $file[0] != '.' && $file != "Inventory")
 			{
 				//If file is a subdirectory, pop inside
@@ -36,7 +37,7 @@ function inventory_list($source_dir)
 					// Find and spit out only the HTML files
 					if(preg_match('/(.*).html/', $file))
 					{
-						$output[] = $file;
+						$output[] = array("filename" => $file);
 					}
 				}
 			}

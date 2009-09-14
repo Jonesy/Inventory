@@ -59,7 +59,8 @@ function loadJSON(url) {
 
 function filelist(data)
 {
-	console.log(data.filelist[3]);
+	
+	console.log(data.filelist);
 	
 	if(data.filelist.length == 0)
 	{
@@ -70,14 +71,17 @@ function filelist(data)
 		
 		list_holder.appendChild(nofiles);
 		console.log('-- But no JSON items found!');
+		
 	} else {
+		
 		for(i = 0; i < data.filelist.length; i++)
 		{
-			if(isArray(data.filelist[i]))
+
+			if(data.filelist[i])
 			{
 				for (var f = 0; f < data.filelist[i].length; f++)
 				{
-					htmlFiles.push(data.filelist[i]);
+					htmlFiles.push(data.filelist[f].filename);
 				}	
 			} else {
 				var dir_root = new Array(data.filelist[i].dir);
@@ -87,8 +91,8 @@ function filelist(data)
 				console.log('-----------------\nFULL DIR ARRAY:');
 				for (j = 0; j < data.filelist[i].files.length; j++)
 				{
-					console.log('/' + data.filelist[i].dir + '/' + data.filelist[i].files[j]);
-					dir_files.push(data.filelist[i].files[j]);
+					console.log('/' + data.filelist[i].dir + '/' + data.filelist[i].files[j].filename);
+					dir_files.push(data.filelist[i].files[j].filename);
 				}
 				htmlFiles.push(dir_root);
 			}
@@ -151,7 +155,6 @@ function addListItem(item)
 // Uses Canvas to draw directory triangles
 function drawTriangle(cid){
 	var myCanvas = document.getElementById(cid);
-	console.log('Canvas: ' + myCanvas);
 	var context = myCanvas.getContext("2d");
     
 	context.beginPath();
