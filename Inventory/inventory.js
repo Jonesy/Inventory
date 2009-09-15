@@ -143,7 +143,7 @@ function addListItem(item)
 		
 		if(!document.all)
 		{
-		drawTriangle(item[0] + '_arrow');
+			drawTriangle(item[0] + '_arrow');
 		}
 		
 		for(k = 0; k < item[1].length; k++)
